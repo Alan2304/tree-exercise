@@ -5,9 +5,13 @@
   font-family: monospace;
 }
 
-ol {
+.tree ol {
   counter-reset: item;
   padding-left: 2.5rem; /* the width of the &nbsp depends on the size of the font size, we can increase the font family size and the spacing will increment. */
+}
+
+.tree > ol {
+  padding-left: 0;
 }
 
 .tree li {
