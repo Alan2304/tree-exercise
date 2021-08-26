@@ -11,9 +11,6 @@ export default function Tree() {
   const { nodes } = data;
   const [nodesAnimals, setNodeAnimals] = useState(nodes);
 
-  // console.log(reduce((count, n) => count + 1, nodes[0], 0));
-  // console.log(addLeaf("dog", { name: "pito" }, nodes[0]));
-  // console.log(nodes);
   return (
     <TreeContext.Provider value={{nodesAnimals, setNodeAnimals}}>
       <div className="tree">

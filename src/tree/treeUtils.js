@@ -4,7 +4,6 @@ export const trampoline =
     let result = fn.bind(null, ...args);
 
     while (typeof result === "function") {
-      console.log("hi");
       result = result();
     }
 
