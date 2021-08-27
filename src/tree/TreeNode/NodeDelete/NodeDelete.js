@@ -1,21 +1,32 @@
 import React, { useContext } from "react";
-import { Button } from 'reactstrap'
+import { Button, Spinner } from "reactstrap";
 
 import TreeContext from "../../TreeProvider/TreeContext";
 import { removeNode } from "../../treeUtils";
 
-const NodeDelete = ({ nodeName }) => {
-  const { nodesAnimals, setNodeAnimals } = useContext(TreeContext);
+import "./NodeDelete.css";
 
-  const onClick = (nodeToRemove) => {
+const NodeDelete = ({ nodeName }) => {
+  const { nodesAnimals, saveNewNodeAnimals, isLoading } = useContext(TreeContext);
+
+  const onClick = async (nodeToRemove) => {
     const [rootNode] = nodesAnimals;
     const copy = { ...rootNode };
 
     removeNode(nodeToRemove, copy);
-    setNodeAnimals([copy]);
+    await saveNewNodeAnimals([copy]);
   };
 
-  return <Button close onClick={() => onClick(nodeName)} />;
+  return (
+    <>
+      {!isLoading && <Button close onClick={() => onClick(nodeName)} />}
+      {isLoading && (
+        <div className="delete-spinner">
+          <Spinner />
+        </div>
+      )}
+    </>
+  );
 };
 
 export default NodeDelete;

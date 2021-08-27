@@ -21,7 +21,7 @@ const TreeNode = ({ node, level = 0 }) => {
               return (
                 <>
                   <TreeNode
-                    key={node.name}
+                    key={`${childrenNode.name}-${index}`}
                     node={childrenNode}
                     level={level + 1}
                   />
@@ -30,7 +30,11 @@ const TreeNode = ({ node, level = 0 }) => {
               );
             }
             return (
-              <TreeNode key={node.name} node={childrenNode} level={level + 1} />
+              <TreeNode
+                key={`${childrenNode.name}-${index}`}
+                node={childrenNode}
+                level={level + 1}
+              />
             );
           })}
         </ol>
